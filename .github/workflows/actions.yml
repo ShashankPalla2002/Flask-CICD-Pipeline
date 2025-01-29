@@ -22,9 +22,6 @@ on:
         required: true
         default: true
         type: boolean
-        
-env:
-  build_condition: ${{ inputs.build_docker_image }}
 
 jobs:
   test:
@@ -47,7 +44,7 @@ jobs:
         pytest
 
   build-deploy: 
-    if: ${{ env.build_condition }}
+    if: ${{ inputs.build_docker_image }}
     needs: ['test']
     runs-on: ubuntu-latest
     steps:
